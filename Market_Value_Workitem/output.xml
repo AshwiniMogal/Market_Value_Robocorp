@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20221221 17:49:19.093" rpa="true" schemaversion="3">
+<suite id="s1" name="Dispatcher" source="c:\Ashwini\Robocorp\Market_Value_Workitem\Dispatcher.robot">
+<test id="s1-t1" name="Dispatcher Market Watch" line="15">
+<try>
+<branch type="TRY">
+<kw name="Read Input Excel">
+<var>${sales_reps}</var>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>AA500_Input.xlsm</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20221221 17:49:28.290" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x00000225BE217610&gt;</msg>
+<status status="PASS" starttime="20221221 17:49:28.051" endtime="20221221 17:49:28.295"/>
+</kw>
+<kw name="Read Worksheet" library="RPA.Excel.Files">
+<arg>Sheet1</arg>
+<doc>Read the content of a worksheet into a list of dictionaries.</doc>
+<status status="PASS" starttime="20221221 17:49:28.295" endtime="20221221 17:49:28.296"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${sales_reps}</var>
+<arg>header=True</arg>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<msg timestamp="20221221 17:49:28.299" level="INFO">Created table: Table(columns=['SYMBOL', 'IQ BOT 1', 'IQ BOT 2', 'IQ BOT 3', 'IQ BOT 4', 'Company Name', 'Value', 'Change Value', 'Change Percent', 'Calculation', 'Increasesd/Decreased', 'Close Value', 'Change Value_2', 'Change Percent_2', 'Calculation_2', 'Increasesd/Decreased_2', 'OPEN', 'DAY RANGE', '52 WEEK RANGE', 'MARKET CAP', 'SHARES OUTSTANDING', 'PUBLIC FLOAT', 'BETA', 'REV. PER EMPLOYEE', 'EPS', 'YIELD', 'DIVIDEND', 'EX-DIVIDEND DATE', 'SHORT INTEREST', '% OF FLOAT SHORTED', 'AVERAGE VOLUME', 'Number of Ratings', "Last Quarter's Earnings", 'Year Ago Earnings', 'Average Target Price', "Current Year's Estimate", 'Median PE on CY Estimate'], rows=5)</msg>
+<msg timestamp="20221221 17:49:28.300" level="INFO">${sales_reps} = Table(columns=['SYMBOL', 'IQ BOT 1', 'IQ BOT 2', 'IQ BOT 3', 'IQ BOT 4', 'Company Name', 'Value', 'Change Value', 'Change Percent', 'Calculation', 'Increasesd/Decreased', 'Close Value', 'Change Value_...</msg>
+<status status="PASS" starttime="20221221 17:49:28.296" endtime="20221221 17:49:28.301"/>
+</kw>
+<return>
+<value>${sales_reps}</value>
+<status status="PASS" starttime="20221221 17:49:28.301" endtime="20221221 17:49:28.303"/>
+</return>
+<msg timestamp="20221221 17:49:28.304" level="INFO">${sales_reps} = Table(columns=['SYMBOL', 'IQ BOT 1', 'IQ BOT 2', 'IQ BOT 3', 'IQ BOT 4', 'Company Name', 'Value', 'Change Value', 'Change Percent', 'Calculation', 'Increasesd/Decreased', 'Close Value', 'Change Value_...</msg>
+<status status="PASS" starttime="20221221 17:49:28.051" endtime="20221221 17:49:28.304"/>
+</kw>
+<status status="PASS" starttime="20221221 17:49:28.049" endtime="20221221 17:49:28.304"/>
+</branch>
+<branch type="EXCEPT">
+<kw name="Log" library="BuiltIn">
+<arg>Unable to read Excel</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20221221 17:49:28.305" endtime="20221221 17:49:28.305"/>
+</kw>
+<status status="NOT RUN" starttime="20221221 17:49:28.304" endtime="20221221 17:49:28.305"/>
+</branch>
+<status status="PASS" starttime="20221221 17:49:28.048" endtime="20221221 17:49:28.305"/>
+</try>
+<for flavor="IN">
+<var>${Item}</var>
+<value>@{sales_reps}</value>
+<iter>
+<var name="${Item}">{'SYMBOL': 'MRVL', 'IQ BOT 1': None, 'IQ BOT 2': None, 'IQ BOT 3': None, 'IQ BOT 4': None, 'Company Name': 'Marvell Technology Inc.', 'Value': '38.22', 'Change Value': '0.41', 'Change Percent': '1.08'...</var>
+<kw name="Create Output Work Item" library="RPA.Robocorp.WorkItems">
+<arg>${Item}</arg>
+<doc>Create a new output work item with optional variables and files.</doc>
+<msg timestamp="20221221 17:49:28.308" level="INFO">SYMBOL = MRVL</msg>
+<msg timestamp="20221221 17:49:28.309" level="INFO">IQ BOT 1 = None</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">IQ BOT 2 = None</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">IQ BOT 3 = None</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">IQ BOT 4 = None</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Company Name = Marvell Technology Inc.</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Value = 38.22</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Change Value = 0.41</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Change Percent = 1.08</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Calculation =  1.49</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Increasesd/Decreased =  positive</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Close Value = $37.81</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Change Value_2 = -0.59</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Change Percent_2 = -1.54</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Calculation_2 =  -2.13</msg>
+<msg timestamp="20221221 17:49:28.310" level="INFO">Increasesd/Decreased_2 =  negative</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">OPEN = $37.95</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">DAY RANGE = 36.90 - 38.10</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">52 WEEK RANGE = 35.30 - 91.78</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">MARKET CAP = $32.76B</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">SHARES OUTSTANDING = 853.2M</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">PUBLIC FLOAT = 778.21M</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">BETA = 1.47</msg>
+<msg timestamp="20221221 17:49:28.312" level="INFO">REV. PER EMPLOYEE = $868.49K</msg>
+<msg timestamp="20221221 17:49:28.313" level="INFO">EPS = N/A</msg>
+<msg timestamp="20221221 17:49:28.313" level="INFO">YIELD = -$0.17</msg>
+<msg timestamp="20221221 17:49:28.313" level="INFO">DIVIDEND = 0.63%</msg>
+<msg timestamp="20221221 17:49:28.313" level="INFO">EX-DIVIDEND DATE = $0.06</msg>
+<msg timestamp="20221221 17:49:28.313" level="INFO">SHORT INTEREST = Jan 5, 2023</msg>
+<msg timestamp="20221221 17:49:28.314" level="INFO">% OF FLOAT SHORTED = 16.07M</msg>
+<msg timestamp="20221221 17:49:28.314" level="INFO">AVERAGE VOLUME = 2.06%</msg>
+<msg timestamp="20221221 17:49:28.314" level="INFO">Number of Ratings = 12.03M</msg>
+<msg timestamp="20221221 17:49:28.314" level="INFO">Last Quarter's Earnings = 31</msg>
+<msg timestamp="20221221 17:49:28.314" level="INFO">Year Ago Earnings = 0.57</msg>
+<msg timestamp="20221221 17:49:28.315" level="INFO">Average Target Price = 1.55</msg>
+<msg timestamp="20221221 17:49:28.315" level="INFO">Current Year's Estimate = 61.50</msg>
+<msg timestamp="20221221 17:49:28.315" level="INFO">Median PE on CY Estimate = 2.13</msg>
+<status status="PASS" starttime="20221221 17:49:28.308" endtime="20221221 17:49:28.316"/>
+</kw>
+<kw name="Save Work Item" library="RPA.Robocorp.WorkItems">
+<doc>Save the current data and files in the work item. If not saved,
+all changes are discarded when the library goes out of scope.</doc>
+<msg timestamp="20221221 17:49:28.323" level="INFO">Saved into output file: C:\Ashwini\Robocorp\Market_Value_Workitem\devdata\work-items-out\run-2\work-items.json</msg>
+<status status="PASS" starttime="20221221 17:49:28.317" endtime="20221221 17:49:28.324"/>
+</kw>
+<status status="PASS" starttime="20221221 17:49:28.308" endtime="20221221 17:49:28.324"/>
+</iter>
+<iter>
+<var name="${Item}">{'SYMBOL': 'UBS', 'IQ BOT 1': None, 'IQ BOT 2': None, 'IQ BOT 3': None, 'IQ BOT 4': None, 'Company Name': 'UBS Group AG', 'Value': '18.03', 'Change Value': '0.00', 'Change Percent': '0.00', 'Calculati...</var>
+<kw name="Create Output Work Item" library="RPA.Robocorp.WorkItems">
+<arg>${Item}</arg>
+<doc>Create a new output work item with optional variables and files.</doc>
+<msg timestamp="20221221 17:49:28.326" level="INFO">SYMBOL = UBS</msg>
+<msg timestamp="20221221 17:49:28.326" level="INFO">IQ BOT 1 = None</msg>
+<msg timestamp="20221221 17:49:28.326" level="INFO">IQ BOT 2 = None</msg>
+<msg timestamp="20221221 17:49:28.326" level="INFO">IQ BOT 3 = None</msg>
+<msg timestamp="20221221 17:49:28.326" level="INFO">IQ BOT 4 = None</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Company Name = UBS Group AG</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Value = 18.03</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Change Value = 0.00</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Change Percent = 0.00</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Calculation =  0</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Increasesd/Decreased =  unchanged</msg>
+<msg timestamp="20221221 17:49:28.327" level="INFO">Close Value = $18.03</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">Change Value_2 = 0.16</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">Change Percent_2 = 0.90</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">Calculation_2 =  1.06</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">Increasesd/Decreased_2 =  positive</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">OPEN = $17.92</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">DAY RANGE = 17.92 - 18.11</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">52 WEEK RANGE = 13.80 - 21.49</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">MARKET CAP = $58.66B</msg>
+<msg timestamp="20221221 17:49:28.328" level="INFO">SHARES OUTSTANDING = 3.52B</msg>
+<msg timestamp="20221221 17:49:28.329" level="INFO">PUBLIC FLOAT = 2.9B</msg>
+<msg timestamp="20221221 17:49:28.329" level="INFO">BETA = 1.07</msg>
+<msg timestamp="20221221 17:49:28.329" level="INFO">REV. PER EMPLOYEE = $483.79K</msg>
+<msg timestamp="20221221 17:49:28.329" level="INFO">EPS = 8.53</msg>
+<msg timestamp="20221221 17:49:28.329" level="INFO">YIELD = $2.11</msg>
+<msg timestamp="20221221 17:49:28.329" level="INFO">DIVIDEND = 2.77%</msg>
+<msg timestamp="20221221 17:49:28.330" level="INFO">EX-DIVIDEND DATE = $0.50</msg>
+<msg timestamp="20221221 17:49:28.330" level="INFO">SHORT INTEREST = Apr 12, 2022</msg>
+<msg timestamp="20221221 17:49:28.330" level="INFO">% OF FLOAT SHORTED = 7.48M</msg>
+<msg timestamp="20221221 17:49:28.330" level="INFO">AVERAGE VOLUME = 0.26%</msg>
+<msg timestamp="20221221 17:49:28.331" level="INFO">Number of Ratings = 2.66M</msg>
+<msg timestamp="20221221 17:49:28.331" level="INFO">Last Quarter's Earnings = 22</msg>
+<msg timestamp="20221221 17:49:28.331" level="INFO">Year Ago Earnings = 0.52</msg>
+<msg timestamp="20221221 17:49:28.334" level="INFO">Average Target Price = 2.11</msg>
+<msg timestamp="20221221 17:49:28.336" level="INFO">Current Year's Estimate = 21.17</msg>
+<msg timestamp="20221221 17:49:28.336" level="INFO">Median PE on CY Estimate = 2.04</msg>
+<status status="PASS" starttime="20221221 17:49:28.325" endtime="20221221 17:49:28.336"/>
+</kw>
+<kw name="Save Work Item" library="RPA.Robocorp.WorkItems">
+<doc>Save the current data and files in the work item. If not saved,
+all changes are discarded when the library goes out of scope.</doc>
+<msg timestamp="20221221 17:49:28.361" level="INFO">Saved into output file: C:\Ashwini\Robocorp\Market_Value_Workitem\devdata\work-items-out\run-2\work-items.json</msg>
+<status status="PASS" starttime="20221221 17:49:28.338" endtime="20221221 17:49:28.362"/>
+</kw>
+<status status="PASS" starttime="20221221 17:49:28.325" endtime="20221221 17:49:28.362"/>
+</iter>
+<iter>
+<var name="${Item}">{'SYMBOL': 'AAPL', 'IQ BOT 1': None, 'IQ BOT 2': None, 'IQ BOT 3': None, 'IQ BOT 4': None, 'Company Name': 'Apple Inc.', 'Value': '133.04', 'Change Value': '0.74', 'Change Percent': '0.56', 'Calculati...</var>
+<kw name="Create Output Work Item" library="RPA.Robocorp.WorkItems">
+<arg>${Item}</arg>
+<doc>Create a new output work item with optional variables and files.</doc>
+<msg timestamp="20221221 17:49:28.364" level="INFO">SYMBOL = AAPL</msg>
+<msg timestamp="20221221 17:49:28.364" level="INFO">IQ BOT 1 = None</msg>
+<msg timestamp="20221221 17:49:28.365" level="INFO">IQ BOT 2 = None</msg>
+<msg timestamp="20221221 17:49:28.365" level="INFO">IQ BOT 3 = None</msg>
+<msg timestamp="20221221 17:49:28.365" level="INFO">IQ BOT 4 = None</msg>
+<msg timestamp="20221221 17:49:28.365" level="INFO">Company Name = Apple Inc.</msg>
+<msg timestamp="20221221 17:49:28.365" level="INFO">Value = 133.04</msg>
+<msg timestamp="20221221 17:49:28.367" level="INFO">Change Value = 0.74</msg>
+<msg timestamp="20221221 17:49:28.367" level="INFO">Change Percent = 0.56</msg>
+<msg timestamp="20221221 17:49:28.369" level="INFO">Calculation =  1.3</msg>
+<msg timestamp="20221221 17:49:28.369" level="INFO">Increasesd/Decreased =  positive</msg>
+<msg timestamp="20221221 17:49:28.369" level="INFO">Close Value = $132.30</msg>
+<msg timestamp="20221221 17:49:28.369" level="INFO">Change Value_2 = -0.07</msg>
+<msg timestamp="20221221 17:49:28.369" level="INFO">Change Percent_2 = -0.05</msg>
+<msg timestamp="20221221 17:49:28.370" level="INFO">Calculation_2 =  -0.12</msg>
+<msg timestamp="20221221 17:49:28.370" level="INFO">Increasesd/Decreased_2 =  negative</msg>
+<msg timestamp="20221221 17:49:28.370" level="INFO">OPEN = $131.39</msg>
+<msg timestamp="20221221 17:49:28.370" level="INFO">DAY RANGE = 129.89 - 133.25</msg>
+<msg timestamp="20221221 17:49:28.371" level="INFO">52 WEEK RANGE = 129.04 - 182.94</msg>
+<msg timestamp="20221221 17:49:28.371" level="INFO">MARKET CAP = $2.11T</msg>
+<msg timestamp="20221221 17:49:28.371" level="INFO">SHARES OUTSTANDING = 15.91B</msg>
+<msg timestamp="20221221 17:49:28.371" level="INFO">PUBLIC FLOAT = 15.89B</msg>
+<msg timestamp="20221221 17:49:28.372" level="INFO">BETA = 1.22</msg>
+<msg timestamp="20221221 17:49:28.372" level="INFO">REV. PER EMPLOYEE = $2.404M</msg>
+<msg timestamp="20221221 17:49:28.372" level="INFO">EPS = 21.68</msg>
+<msg timestamp="20221221 17:49:28.372" level="INFO">YIELD = $6.10</msg>
+<msg timestamp="20221221 17:49:28.373" level="INFO">DIVIDEND = 0.70%</msg>
+<msg timestamp="20221221 17:49:28.373" level="INFO">EX-DIVIDEND DATE = $0.23</msg>
+<msg timestamp="20221221 17:49:28.373" level="INFO">SHORT INTEREST = Nov 4, 2022</msg>
+<msg timestamp="20221221 17:49:28.373" level="INFO">% OF FLOAT SHORTED = 125.72M</msg>
+<msg timestamp="20221221 17:49:28.373" level="INFO">AVERAGE VOLUME = 0.79%</msg>
+<msg timestamp="20221221 17:49:28.374" level="INFO">Number of Ratings = 87.75M</msg>
+<msg timestamp="20221221 17:49:28.374" level="INFO">Last Quarter's Earnings = 42</msg>
+<msg timestamp="20221221 17:49:28.375" level="INFO">Year Ago Earnings = 1.29</msg>
+<msg timestamp="20221221 17:49:28.375" level="INFO">Average Target Price = 6.10</msg>
+<msg timestamp="20221221 17:49:28.375" level="INFO">Current Year's Estimate = 173.44</msg>
+<msg timestamp="20221221 17:49:28.375" level="INFO">Median PE on CY Estimate = 6.19</msg>
+<status status="PASS" starttime="20221221 17:49:28.363" endtime="20221221 17:49:28.375"/>
+</kw>
+<kw name="Save Work Item" library="RPA.Robocorp.WorkItems">
+<doc>Save the current data and files in the work item. If not saved,
+all changes are discarded when the library goes out of scope.</doc>
+<msg timestamp="20221221 17:49:28.392" level="INFO">Saved into output file: C:\Ashwini\Robocorp\Market_Value_Workitem\devdata\work-items-out\run-2\work-items.json</msg>
+<status status="PASS" starttime="20221221 17:49:28.376" endtime="20221221 17:49:28.392"/>
+</kw>
+<status status="PASS" starttime="20221221 17:49:28.362" endtime="20221221 17:49:28.392"/>
+</iter>
+<iter>
+<var name="${Item}">{'SYMBOL': 'XXYZ', 'IQ BOT 1': None, 'IQ BOT 2': None, 'IQ BOT 3': None, 'IQ BOT 4': None, 'Company Name': 'No Company Present', 'Value': 'NA', 'Change Value': 'NA', 'Change Percent': 'NA', 'Calculati...</var>
+<kw name="Create Output Work Item" library="RPA.Robocorp.WorkItems">
+<arg>${Item}</arg>
+<doc>Create a new output work item with optional variables and files.</doc>
+<msg timestamp="20221221 17:49:28.395" level="INFO">SYMBOL = XXYZ</msg>
+<msg timestamp="20221221 17:49:28.395" level="INFO">IQ BOT 1 = None</msg>
+<msg timestamp="20221221 17:49:28.395" level="INFO">IQ BOT 2 = None</msg>
+<msg timestamp="20221221 17:49:28.396" level="INFO">IQ BOT 3 = None</msg>
+<msg timestamp="20221221 17:49:28.396" level="INFO">IQ BOT 4 = None</msg>
+<msg timestamp="20221221 17:49:28.396" level="INFO">Company Name = No Company Present</msg>
+<msg timestamp="20221221 17:49:28.396" level="INFO">Value = NA</msg>
+<msg timestamp="20221221 17:49:28.396" level="INFO">Change Value = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Change Percent = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Calculation = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Increasesd/Decreased = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Close Value = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Change Value_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Change Percent_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Calculation_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.397" level="INFO">Increasesd/Decreased_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.398" level="INFO">OPEN = NA</msg>
+<msg timestamp="20221221 17:49:28.398" level="INFO">DAY RANGE = NA</msg>
+<msg timestamp="20221221 17:49:28.398" level="INFO">52 WEEK RANGE = NA</msg>
+<msg timestamp="20221221 17:49:28.399" level="INFO">MARKET CAP = NA</msg>
+<msg timestamp="20221221 17:49:28.399" level="INFO">SHARES OUTSTANDING = NA</msg>
+<msg timestamp="20221221 17:49:28.399" level="INFO">PUBLIC FLOAT = NA</msg>
+<msg timestamp="20221221 17:49:28.400" level="INFO">BETA = NA</msg>
+<msg timestamp="20221221 17:49:28.400" level="INFO">REV. PER EMPLOYEE = NA</msg>
+<msg timestamp="20221221 17:49:28.400" level="INFO">EPS = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">YIELD = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">DIVIDEND = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">EX-DIVIDEND DATE = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">SHORT INTEREST = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">% OF FLOAT SHORTED = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">AVERAGE VOLUME = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">Number of Ratings = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">Last Quarter's Earnings = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">Year Ago Earnings = NA</msg>
+<msg timestamp="20221221 17:49:28.401" level="INFO">Average Target Price = NA</msg>
+<msg timestamp="20221221 17:49:28.403" level="INFO">Current Year's Estimate = NA</msg>
+<msg timestamp="20221221 17:49:28.403" level="INFO">Median PE on CY Estimate = NA</msg>
+<status status="PASS" starttime="20221221 17:49:28.393" endtime="20221221 17:49:28.403"/>
+</kw>
+<kw name="Save Work Item" library="RPA.Robocorp.WorkItems">
+<doc>Save the current data and files in the work item. If not saved,
+all changes are discarded when the library goes out of scope.</doc>
+<msg timestamp="20221221 17:49:28.426" level="INFO">Saved into output file: C:\Ashwini\Robocorp\Market_Value_Workitem\devdata\work-items-out\run-2\work-items.json</msg>
+<status status="PASS" starttime="20221221 17:49:28.404" endtime="20221221 17:49:28.426"/>
+</kw>
+<status status="PASS" starttime="20221221 17:49:28.392" endtime="20221221 17:49:28.426"/>
+</iter>
+<iter>
+<var name="${Item}">{'SYMBOL': 'BHDUSD', 'IQ BOT 1': None, 'IQ BOT 2': None, 'IQ BOT 3': None, 'IQ BOT 4': None, 'Company Name': 'Bahraini Dinar/U.S. Dollar', 'Value': '2.6528', 'Change Value': '-0.0001', 'Change Percent...</var>
+<kw name="Create Output Work Item" library="RPA.Robocorp.WorkItems">
+<arg>${Item}</arg>
+<doc>Create a new output work item with optional variables and files.</doc>
+<msg timestamp="20221221 17:49:28.429" level="INFO">SYMBOL = BHDUSD</msg>
+<msg timestamp="20221221 17:49:28.429" level="INFO">IQ BOT 1 = None</msg>
+<msg timestamp="20221221 17:49:28.429" level="INFO">IQ BOT 2 = None</msg>
+<msg timestamp="20221221 17:49:28.429" level="INFO">IQ BOT 3 = None</msg>
+<msg timestamp="20221221 17:49:28.429" level="INFO">IQ BOT 4 = None</msg>
+<msg timestamp="20221221 17:49:28.429" level="INFO">Company Name = Bahraini Dinar/U.S. Dollar</msg>
+<msg timestamp="20221221 17:49:28.429" level="INFO">Value = 2.6528</msg>
+<msg timestamp="20221221 17:49:28.430" level="INFO">Change Value = -0.0001</msg>
+<msg timestamp="20221221 17:49:28.430" level="INFO">Change Percent = -0.01</msg>
+<msg timestamp="20221221 17:49:28.430" level="INFO">Calculation =  -0.0101</msg>
+<msg timestamp="20221221 17:49:28.430" level="INFO">Increasesd/Decreased =  negative</msg>
+<msg timestamp="20221221 17:49:28.430" level="INFO">Close Value = NA</msg>
+<msg timestamp="20221221 17:49:28.430" level="INFO">Change Value_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.431" level="INFO">Change Percent_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.431" level="INFO">Calculation_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.431" level="INFO">Increasesd/Decreased_2 = NA</msg>
+<msg timestamp="20221221 17:49:28.431" level="INFO">OPEN = $2.6600</msg>
+<msg timestamp="20221221 17:49:28.431" level="INFO">DAY RANGE = 2.6454 - 2.6604</msg>
+<msg timestamp="20221221 17:49:28.432" level="INFO">52 WEEK RANGE = 2.6036 - 2.6893</msg>
+<msg timestamp="20221221 17:49:28.432" level="INFO">MARKET CAP = NA</msg>
+<msg timestamp="20221221 17:49:28.432" level="INFO">SHARES OUTSTANDING = NA</msg>
+<msg timestamp="20221221 17:49:28.433" level="INFO">PUBLIC FLOAT = NA</msg>
+<msg timestamp="20221221 17:49:28.433" level="INFO">BETA = NA</msg>
+<msg timestamp="20221221 17:49:28.433" level="INFO">REV. PER EMPLOYEE = NA</msg>
+<msg timestamp="20221221 17:49:28.433" level="INFO">EPS = NA</msg>
+<msg timestamp="20221221 17:49:28.434" level="INFO">YIELD = NA</msg>
+<msg timestamp="20221221 17:49:28.434" level="INFO">DIVIDEND = NA</msg>
+<msg timestamp="20221221 17:49:28.434" level="INFO">EX-DIVIDEND DATE = NA</msg>
+<msg timestamp="20221221 17:49:28.435" level="INFO">SHORT INTEREST = NA</msg>
+<msg timestamp="20221221 17:49:28.435" level="INFO">% OF FLOAT SHORTED = NA</msg>
+<msg timestamp="20221221 17:49:28.435" level="INFO">AVERAGE VOLUME = NA</msg>
+<msg timestamp="20221221 17:49:28.435" level="INFO">Number of Ratings = NA</msg>
+<msg timestamp="20221221 17:49:28.436" level="INFO">Last Quarter's Earnings = NA</msg>
+<msg timestamp="20221221 17:49:28.436" level="INFO">Year Ago Earnings = NA</msg>
+<msg timestamp="20221221 17:49:28.436" level="INFO">Average Target Price = NA</msg>
+<msg timestamp="20221221 17:49:28.436" level="INFO">Current Year's Estimate = NA</msg>
+<msg timestamp="20221221 17:49:28.436" level="INFO">Median PE on CY Estimate = NA</msg>
+<status status="PASS" starttime="20221221 17:49:28.428" endtime="20221221 17:49:28.436"/>
+</kw>
+<kw name="Save Work Item" library="RPA.Robocorp.WorkItems">
+<doc>Save the current data and files in the work item. If not saved,
+all changes are discarded when the library goes out of scope.</doc>
+<msg timestamp="20221221 17:49:28.456" level="INFO">Saved into output file: C:\Ashwini\Robocorp\Market_Value_Workitem\devdata\work-items-out\run-2\work-items.json</msg>
+<status status="PASS" starttime="20221221 17:49:28.437" endtime="20221221 17:49:28.456"/>
+</kw>
+<status status="PASS" starttime="20221221 17:49:28.427" endtime="20221221 17:49:28.457"/>
+</iter>
+<status status="PASS" starttime="20221221 17:49:28.306" endtime="20221221 17:49:28.457"/>
+</for>
+<status status="PASS" starttime="20221221 17:49:28.046" endtime="20221221 17:49:28.457"/>
+</test>
+<doc>Dispatcher Market Watch</doc>
+<status status="PASS" starttime="20221221 17:49:19.109" endtime="20221221 17:49:28.460"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Dispatcher">Dispatcher</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
